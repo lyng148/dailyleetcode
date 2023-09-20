@@ -2,18 +2,7 @@ void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
     int index = nums1Size - 1;
     int i = m - 1;
     int j = n - 1;
-    if (i < 0)
-    {
-        for (int k = 0; k < n; k++)
-        {
-            nums1[k] = nums2[k];
-        }
-        return;
-    }
-    if (j < 0)
-    {
-        return;
-    }
+  
 
     while (i >= 0 && j >= 0)
     {
@@ -24,6 +13,6 @@ void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n){
         else nums1[index--] = nums2[j--];
     }
     while (j >= 0) nums1[index--] = nums2[j--]; 
-    while (i >= 0) nums1[index--] = nums1[i--];
+
     return; 
 }
