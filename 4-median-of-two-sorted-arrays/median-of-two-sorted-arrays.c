@@ -1,6 +1,11 @@
 //O(n+m) solution 
 //binary search can reduce complexity to o(log(n+m))
 
+//Mean of an array = (sum of all elements) / (number of elements)
+
+//The median of a sorted array of size N is defined as the middle element when N is odd and average of middle
+//two elements when N is even. Since the array is not sorted here, we sort the array first, then apply above
+//formula.
 double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
     int *ans = (int*)malloc((nums1Size + nums2Size) * sizeof(int));
     int i = 0, j = 0, index = 0;
