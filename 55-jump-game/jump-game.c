@@ -1,6 +1,5 @@
 bool canJump(int* nums, int numsSize){
     int maxReach = nums[0]; //store biggest index can reach
-    if (maxReach >= numsSize - 1) return true;
     int index = 0;
     while (index <= maxReach)
     {
@@ -8,6 +7,5 @@ bool canJump(int* nums, int numsSize){
         if (maxReach >= numsSize - 1) return true;
         index++;
     }
-    if (maxReach >= numsSize - 1) return true;
     return false;
 }
