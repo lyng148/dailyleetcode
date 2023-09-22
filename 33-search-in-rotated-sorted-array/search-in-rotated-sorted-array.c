@@ -27,3 +27,7 @@ int search(int* nums, int numsSize, int target){
     }
     return -1;
 }
+
+// o day chung ta se co 2 th, va 2 th con
+//ben trai hoac ben phai duoc sort
+// phan tu io ben trai hoac phai
