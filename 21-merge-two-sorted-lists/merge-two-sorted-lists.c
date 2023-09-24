@@ -23,9 +23,9 @@ struct ListNode* mergeTwoLists(struct ListNode* head1, struct ListNode* head2) {
     while (head1 != NULL && head2 != NULL) {
         if (head1->val <= head2->val) {
             node* next = makenode(head1->val);
-            if (tmp == NULL) { //Must check when it's the first node of linked list
-                head = next;
-                tmp = head;
+            if (tmp == NULL) { //Must check because it's the first node of linked list
+                head = next;   //Without could cause runtime error: member access within null pointer
+                tmp = head;    // of type 'struct node' [solution.c]
             } else {
                 tmp->next = next;
                 tmp = tmp->next;
