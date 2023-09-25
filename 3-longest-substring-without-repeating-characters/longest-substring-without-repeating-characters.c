@@ -8,7 +8,7 @@ int lengthOfLongestSubstring(char * s){
             map[s[r]] = 1;
             if (r - l + 1 > max) max = r - l + 1;
         } else {
-            while (s[l] != s[r]) {
+            while (s[l] != s[r]) { // l chay den khi thoat khoi thang s[r]
                 map[s[l]] = 0;
                 l++;
             }
