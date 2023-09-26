@@ -8,7 +8,7 @@ char* removeDuplicateLetters(char* s) {
         count[s[i] - 'a']++;
     }
 
-    char* result = (char*)malloc(10001 * sizeof(char)); // Khởi tạo chuỗi kết quả
+    char* result = (char*)malloc(10001 * sizeof(char));
 
     for (int i = 0; s[i] != '\0'; i++) {
         count[s[i] - 'a']--;
