@@ -7,8 +7,7 @@ int* sortArrayByParity(int* nums, int numsSize, int* returnSize){
     {
         if (nums[j] % 2 == 0)
         {
-            swap(&nums[i], &nums[j]);
-            i++;
+            swap(&nums[i++], &nums[j]);
         }
     }
     return nums;
