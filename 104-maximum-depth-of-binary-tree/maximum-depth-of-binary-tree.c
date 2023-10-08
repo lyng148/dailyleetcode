@@ -1,14 +1,4 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     struct TreeNode *left;
- *     struct TreeNode *right;
- * };
- */
+int max(int a, int b){return a > b ? a : b;};
 int maxDepth(struct TreeNode* root){
-    if (root == NULL) return 0;
-    int right = maxDepth(root->right);
-    int left = maxDepth(root->left);
-    return right > left ? right + 1 : left + 1;
+    return (!root) ? 0 : max(maxDepth(root->left) + 1, maxDepth(root->right) + 1);
 }
