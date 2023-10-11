@@ -1,5 +1,3 @@
-
-
 bool isValid(int n, int *a)
 {
 
@@ -35,6 +33,7 @@ void print(char** ans,int *idx, int n, int *a)
     }
     ans[*idx][i - 1] = '\0';
     (*idx)++;
+    // idx start at 0 which mean start also the exact number of answer
 }
 
 void try1(int i, int n, char **ans, int *idx, int *a)
@@ -52,14 +51,15 @@ void try1(int i, int n, char **ans, int *idx, int *a)
     }
 }
 
-char **generateParenthesis(int n, int *returnSize) {
-    int *a = (int *)malloc((2 * n + 1) * sizeof(int));
-    char **ans = (char **)malloc(10000 * sizeof(char *));
-    for (int i = 0; i < 10000; i++) {
-        ans[i] = (char *)malloc((2 * n + 1) * sizeof(char));
+char ** generateParenthesis(int n, int* returnSize){
+    int *a = (int *)malloc((n*2+1) * sizeof(int));
+    char **ans = (char**)malloc(10000 * sizeof(char*));
+    for (int i = 0; i < 10000; i++)
+    {
+        ans[i] = (char*)malloc((n*2+1) * sizeof(char));
     }
     int idx = 0;
-    try1(1, 2 * n, ans, &idx, a);
+    try1(1, n * 2, ans, &idx, a);
     *returnSize = idx;
     return ans;
 }
