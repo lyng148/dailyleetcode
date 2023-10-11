@@ -1,44 +1,54 @@
-#include <stdio.h>
-#include <stdlib.h>
 
-bool isValid(int n, int *a) {
-    int balance = 0;
-    for (int i = 1; i <= n; i++) {
-        if (a[i] == 0) {
-            balance++;
-        } else {
-            balance--;
+
+bool isValid(int n, int *a)
+{
+
+    char stack[n];
+    int top = -1;
+    for (int i = 1; i <= n; i++)
+    {
+        if (a[i] == 0)
+        {
+            stack[++top] = a[i];
         }
-        if (balance < 0) {
+        else if (a[i] == 1 && top >= 0 && stack[top] == 0)
+        {
+            top--;
+        }
+        else
+        {
             return false;
         }
     }
-    return balance == 0;
+    return top == -1;
 }
 
-void print(char **ans, int *idx, int n, int *a) {
+void print(char** ans,int *idx, int n, int *a)
+{
     int i;
-    for (i = 1; i <= n; i++) {
+    for (i = 1; i <= n; i++)
+    {
         if (a[i] == 0)
             ans[*idx][i - 1] = '(';
         else
             ans[*idx][i - 1] = ')';
     }
-    ans[*idx][i - 1] = '\0'; // Thay đổi dòng này từ ans[*idx][i] thành ans[*idx][i - 1]
+    ans[*idx][i - 1] = '\0';
     (*idx)++;
 }
 
-void try1(int i, int n, char **ans, int *idx, int *a) {
-    if (i > n) {
-        if (isValid(n, a)) {
-            print(ans, idx, n, a);
-        }
-        return;
-    }
-
-    for (int j = 0; j <= 1; j++) {
+void try1(int i, int n, char **ans, int *idx, int *a)
+{
+    for (int j = 0; j <= 1; j++)
+    {
         a[i] = j;
-        try1(i + 1, n, ans, idx, a);
+        if (i == n)
+        {
+            if (isValid(n, a))
+                print(ans, idx, n, a);
+        }
+        else
+            try1(i + 1, n, ans, idx, a);
     }
 }
 
