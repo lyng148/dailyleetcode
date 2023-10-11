@@ -1,65 +1,36 @@
-bool isValid(int n, int *a)
-{
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-    char stack[n];
-    int top = -1;
-    for (int i = 1; i <= n; i++)
-    {
-        if (a[i] == 0)
-        {
-            stack[++top] = a[i];
-        }
-        else if (a[i] == 1 && top >= 0 && stack[top] == 0)
-        {
-            top--;
-        }
-        else
-        {
-            return false;
-        }
+// Helper function to perform backtracking
+void generateParenthesisHelper(char ***combinations, char *current, int open, int close, int max, int *count, int n) {
+    if (strlen(current) == 2 * n) {
+        (*combinations)[(*count)] = strdup(current); // Allocate and copy the current combination
+        (*count)++;
+        return;
     }
-    return top == -1;
-}
 
-void print(char** ans,int *idx, int n, int *a)
-{
-    int i;
-    for (i = 1; i <= n; i++)
-    {
-        if (a[i] == 0)
-            ans[*idx][i - 1] = '(';
-        else
-            ans[*idx][i - 1] = ')';
+    if (open < n) {
+        strcat(current, "(");
+        generateParenthesisHelper(combinations, current, open + 1, close, max, count, n);
+        current[strlen(current) - 1] = '\0'; // Backtrack
     }
-    ans[*idx][i - 1] = '\0';
-    (*idx)++;
-    // idx start at 0 which mean start also the exact number of answer
-}
 
-void try1(int i, int n, char **ans, int *idx, int *a)
-{
-    for (int j = 0; j <= 1; j++)
-    {
-        a[i] = j;
-        if (i == n)
-        {
-            if (isValid(n, a))
-                print(ans, idx, n, a);
-        }
-        else
-            try1(i + 1, n, ans, idx, a);
+    if (close < open) {
+        strcat(current, ")");
+        generateParenthesisHelper(combinations, current, open, close + 1, max, count, n);
+        current[strlen(current) - 1] = '\0'; // Backtrack
     }
 }
 
-char ** generateParenthesis(int n, int* returnSize){
-    int *a = (int *)malloc((n*2+1) * sizeof(int));
-    char **ans = (char**)malloc(10000 * sizeof(char*));
-    for (int i = 0; i < 10000; i++)
-    {
-        ans[i] = (char*)malloc((n*2+1) * sizeof(char));
-    }
-    int idx = 0;
-    try1(1, n * 2, ans, &idx, a);
-    *returnSize = idx;
-    return ans;
+char **generateParenthesis(int n, int *returnSize) {
+    *returnSize = 0; // Initialize the returnSize
+    char **combinations = (char **)malloc(sizeof(char *) * 10000); // Assuming a maximum of 10000 combinations
+    char *current = (char *)malloc(sizeof(char) * (2 * n + 1)); // +1 for null terminator
+    current[0] = '\0'; // Initialize the current combination
+
+    generateParenthesisHelper(&combinations, current, 0, 0, n, returnSize, n);
+
+    free(current); // Free the memory used for the current combination
+    return combinations;
 }
