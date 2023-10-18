@@ -15,9 +15,9 @@ void DFS(TreeNode *root, int low, int high, int *ans)
     {
         (*ans) += root->val;
     }
-    if (root->val > low)
-    {
-        DFS(root->left, low, high, ans);
+    if (root->val > low) // o day sai vi minh dang nghi neu sai thi chi duyet o ben kia
+    {                    // nhung ma truong hop dung no bo qua hettttttt
+        DFS(root->left, low, high, ans); // can doi cach tu duy, nhu kieu dung thi moi duyet tiep, khong phai la sai thi doi
     }
     if (root->val < high)
     {
