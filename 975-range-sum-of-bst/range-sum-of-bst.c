@@ -15,8 +15,14 @@ void DFS(TreeNode *root, int low, int high, int *ans)
     {
         (*ans) += root->val;
     }
-    DFS(root->left, low, high, ans);
-    DFS(root->right, low, high, ans);
+    if (root->val > low)
+    {
+        DFS(root->left, low, high, ans);
+    }
+    if (root->val < high)
+    {
+        DFS(root->right, low, high, ans);
+    }
 } 
 int rangeSumBST(struct TreeNode* root, int low, int high){
     int ans = 0;
