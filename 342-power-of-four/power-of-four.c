@@ -1,4 +1,4 @@
 bool isPowerOfFour(int n)
 {
-  return (log(n) / log(4)) == (int)(log(n) / log(4));
+  return n > 0 && (n&(n-1)) == 0 && (n & 0x55555555) != 0;
 }
