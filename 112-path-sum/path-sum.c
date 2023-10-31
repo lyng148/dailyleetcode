@@ -6,15 +6,23 @@
  *     struct TreeNode *right;
  * };
  */
-
 typedef struct TreeNode node;
-bool check(node* root, int target)
+void DFS(node* root, int target, bool* check)
 {
-    if (root == NULL) return false;
-    if (root->left == NULL && root->right == NULL) return root->val == target;
-    target -= root->val;
-    return check(root->left, target) || check(root->right, target);
+    if (root)
+    {
+        target -= root->val;
+        if (target == 0 && !root->left && !root->right)
+        {
+            *check = true;
+            return;
+        }
+        DFS(root->left, target, check);
+        DFS(root->right, target, check);
+    }
 }
 bool hasPathSum(struct TreeNode* root, int targetSum){
-    return check(root, targetSum);
+    bool check = false;
+    DFS(root, targetSum, &check);
+    return check;
 }
