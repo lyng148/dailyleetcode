@@ -1,16 +1,12 @@
-int climbStairs(int n){
-    int a1 = 1, a2 = 2;
-    if (n == 1)
-        return 1;
-    if (n == 2) 
-        return 2;
-    int i = 3, a;
-    while (i <= n)
+int climbStairs(int n) {
+    int stair[46];
+    stair[0] = 1;
+    stair[1] = 1;
+    stair[2] = 2;
+    if (n < 3) return stair[n];
+    for (int i = 3; i <= n; i++)
     {
-        a = a1 + a2;
-        a1 = a2;
-        a2 = a;
-        i++;
+        stair[i] = stair[i - 1] + stair[i - 2];
     }
-    return a;
+    return stair[n];
 }
