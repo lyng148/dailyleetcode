@@ -2,12 +2,12 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         int prevRob = 0;
-        int maxRes = 0;
-        for (int val : nums){
-            int tmp = maxRes;
-            maxRes = max(maxRes, prevRob + val);
+        int currRob = 0;
+        for (int house : nums) {
+            int tmp = currRob;
+            currRob = max(prevRob + house, currRob);
             prevRob = tmp;
         }
-        return maxRes;
+        return currRob;
     }
 };
