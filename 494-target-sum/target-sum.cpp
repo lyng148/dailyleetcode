@@ -14,9 +14,8 @@ public:
     }
 
     int findTargetSumWays(vector<int>& nums, int target) {
-        ios::sync_with_stdio(false);
-        cin.tie(nullptr);
-        
+       
+
         tryy(0, nums, target);
         return res;
     }
