@@ -7,6 +7,7 @@ public:
         if (n == 1 && m == 1){
             return !nums[n - 1][m - 1];
         }
+          
         int dp[n + 1][m + 1];
         memset(dp, 0, sizeof(dp));
         dp[0][0] = 1;
